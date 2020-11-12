@@ -1,3 +1,5 @@
+package nju;
+
 import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -9,8 +11,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
+
+
 /**
- * µ÷¶ÈÕû¸öKMeansÔËÐÐµÄ¹ý³Ì
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½KMeansï¿½ï¿½ï¿½ÐµÄ¹ï¿½ï¿½ï¿½
  * @author KING
  *
  */

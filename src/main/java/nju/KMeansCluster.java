@@ -1,3 +1,5 @@
+package nju;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,21 +14,22 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 /**
- * ÔÚÊÕÁ²Ìõ¼þÂú×ãÇÒËùÓÐ´ØÖÐÐÄµÄÎÄ¼þ×îºó²úÉúºó£¬ÔÙ¶ÔÊäÈëÎÄ¼þ
- * ÖÐµÄËùÓÐÊµÀý½øÐÐ»®·Ö´ØµÄ¹¤×÷£¬×îºó°ÑËùÓÐÊµÀý°´ÕÕ(ÊµÀý,´Øid)
- * µÄ·½Ê½Ð´½ø½á¹ûÎÄ¼þ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
+ * ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½Ö´ØµÄ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Êµï¿½ï¿½,ï¿½ï¿½id)
+ * ï¿½Ä·ï¿½Ê½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
  * @author KING
  *
  */
 public class KMeansCluster {
-	public static class KMeansClusterMapper extends Mapper<LongWritable, Text, Text, IntWritable>{
+	public static class KMeansClusterMapper extends Mapper<LongWritable, Text, Text, NullWritable>{
 		private ArrayList<Cluster> kClusters = new ArrayList<Cluster>();
 		/**
-		 * ¶ÁÈëÄ¿Ç°µÄ´ØÐÅÏ¢
+		 * ï¿½ï¿½ï¿½ï¿½Ä¿Ç°ï¿½Ä´ï¿½ï¿½ï¿½Ï¢
 		 */
 		@Override
 		protected void setup(Context context) throws IOException,InterruptedException{
@@ -53,7 +56,7 @@ public class KMeansCluster {
 		}
 		
 		/**
-		 * ¶ÁÈ¡Ò»ÐÐÈ»ºóÑ°ÕÒÀë¸Ãµã×î½üµÄ´Øid·¢Éä(instance,clusterID)
+		 * ï¿½ï¿½È¡Ò»ï¿½ï¿½È»ï¿½ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½idï¿½ï¿½ï¿½ï¿½(instance,clusterID)
 		 */
 		@Override
 		public void map(LongWritable key, Text value, Context context)throws 
@@ -65,7 +68,8 @@ public class KMeansCluster {
 				if(id == -1)
 					throw new InterruptedException("id == -1");
 				else{
-					context.write(value, new IntWritable(id));
+					String ans = value.toString() + "," + Integer.toString(id);
+					context.write(new Text(ans), NullWritable.get());
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

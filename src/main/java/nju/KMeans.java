@@ -1,3 +1,5 @@
+package nju;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,7 +20,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 /**
- * KMeans¾ÛÀàËã·¨
+ * KMeansï¿½ï¿½ï¿½ï¿½ï¿½ã·¨
  * @author KING
  *
  */
@@ -27,7 +29,7 @@ public class KMeans {
 		private ArrayList<Cluster> kClusters = new ArrayList<Cluster>();
 		
 		/**
-		 * ¶ÁÈëÄ¿Ç°µÄ´ØÐÅÏ¢
+		 * ï¿½ï¿½ï¿½ï¿½Ä¿Ç°ï¿½Ä´ï¿½ï¿½ï¿½Ï¢
 		 */
 		@Override
 		protected void setup(Context context) throws IOException,InterruptedException{
@@ -54,7 +56,7 @@ public class KMeans {
 		}
 		
 		/**
-		 * ¶ÁÈ¡Ò»ÐÐÈ»ºóÑ°ÕÒÀë¸Ãµã×î½üµÄ´Ø·¢Éä(clusterID,instance)
+		 * ï¿½ï¿½È¡Ò»ï¿½ï¿½È»ï¿½ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ä´Ø·ï¿½ï¿½ï¿½(clusterID,instance)
 		 */
 		@Override
 		public void map(LongWritable key, Text value, Context context)throws 
@@ -78,7 +80,7 @@ public class KMeans {
 		}
 		
 		/**
-		 * ·µ»ØÀëinstance×î½üµÄ´ØµÄID
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½instanceï¿½ï¿½ï¿½ï¿½Ä´Øµï¿½ID
 		 * @param instance
 		 * @return
 		 * @throws Exception 
