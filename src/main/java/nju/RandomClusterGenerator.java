@@ -43,7 +43,6 @@ public final class RandomClusterGenerator {
 				fsi = fs.open(fileList[i].getPath());
 				LineReader lineReader = new LineReader(fsi,conf);
 				while(lineReader.readLine(line) > 0){
-					//�ж��Ƿ�Ӧ�ü��뵽���ļ�����ȥ
 					System.out.println("read a line:" + line);
 					Instance instance = new Instance(line.toString());
 					makeDecision(instance);
