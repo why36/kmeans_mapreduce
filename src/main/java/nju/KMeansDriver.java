@@ -13,11 +13,6 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
 
-/**
- * ��������KMeans���еĹ���
- * @author KING
- *
- */
 public class KMeansDriver {
 	private int k;
 	private int iterationNum;

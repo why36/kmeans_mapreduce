@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import king.Utils.Distance;
-import king.Utils.EuclideanDistance;
+import Dist.Utils.Distance;
+import Dist.Utils.EuclideanDistance;
 
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
@@ -19,18 +19,12 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
-/**
- * KMeans�����㷨
- * @author KING
- *
- */
+
 public class KMeans {
 	public static class KMeansMapper extends Mapper<LongWritable,Text,IntWritable,Cluster>{
 		private ArrayList<Cluster> kClusters = new ArrayList<Cluster>();
 		
-		/**
-		 * ����Ŀǰ�Ĵ���Ϣ
-		 */
+
 		@Override
 		protected void setup(Context context) throws IOException,InterruptedException{
 			super.setup(context);
@@ -55,9 +49,6 @@ public class KMeans {
 	        fsi.close();
 		}
 		
-		/**
-		 * ��ȡһ��Ȼ��Ѱ����õ�����Ĵط���(clusterID,instance)
-		 */
 		@Override
 		public void map(LongWritable key, Text value, Context context)throws 
 		IOException, InterruptedException{
@@ -74,17 +65,11 @@ public class KMeans {
 					context.write(new IntWritable(id), cluster);
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		/**
-		 * ������instance����Ĵص�ID
-		 * @param instance
-		 * @return
-		 * @throws Exception 
-		 */
+
 		public int getNearest(Instance instance) throws Exception{
 			int id = -1;
 			double distance = Double.MAX_VALUE;

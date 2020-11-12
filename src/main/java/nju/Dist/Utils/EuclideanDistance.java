@@ -1,4 +1,4 @@
-package king.Utils;
+package Dist.Utils;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ public class EuclideanDistance<T extends Number> implements Distance<T> {
 
 	@Override
 	public double getDistance(List<T> a, List<T> b) throws Exception {
-		// TODO Auto-generated method stub
 		if(a.size() != b.size())
 			throw new Exception("size not compatible!");
 		else{

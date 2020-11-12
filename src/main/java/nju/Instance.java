@@ -51,7 +51,6 @@ public class Instance implements Writable{
 				throw new Exception("can not add! dimension not compatible!" + value.size() + ","
 						+ instance.getValue().size());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
 			}
@@ -91,7 +90,6 @@ public class Instance implements Writable{
 
 	@Override
 	public void write(DataOutput out) throws IOException {
-		// TODO Auto-generated method stub
 		out.writeInt(value.size());
 		for(int i = 0; i < value.size(); i++){
 			out.writeDouble(value.get(i));
@@ -100,7 +98,6 @@ public class Instance implements Writable{
 
 	@Override
 	public void readFields(DataInput in) throws IOException {
-		// TODO Auto-generated method stub
 		int size = 0;
 		value = new ArrayList<Double>();
 		if((size = in.readInt()) != 0){

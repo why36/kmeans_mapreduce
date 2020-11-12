@@ -5,9 +5,6 @@ import java.io.DataOutput;
 import java.io.IOException;
 import org.apache.hadoop.io.Writable;
 
-/*
- * k-means�����㷨����Ϣ
- */
 public class Cluster implements Writable{
 	private int clusterID;
 	private long numOfPoints;
@@ -68,14 +65,14 @@ public class Cluster implements Writable{
 			numOfPoints++;
 			center = sum.divide(numOfPoints);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void write(DataOutput out) throws IOException {
-		// TODO Auto-generated method stub
+
 		out.writeInt(clusterID);
 		out.writeLong(numOfPoints);
 		center.write(out);
@@ -83,7 +80,7 @@ public class Cluster implements Writable{
 
 	@Override
 	public void readFields(DataInput in) throws IOException {
-		// TODO Auto-generated method stub
+
 		clusterID = in.readInt();
 		numOfPoints = in.readLong();
 		center.readFields(in);

@@ -14,19 +14,6 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.util.LineReader;
 
-/**
- * This class generates the initial Cluster centers as the input
- * of successive process.
- * it randomly chooses k instances as the initial k centers and 
- * store it as a sequenceFile.Specificly,we scan all the instances
- * and each time when we scan a new instance.we first check if 
- * the number of clusters no less than k. we simply add current 
- * instance to our cluster if the condition is satisfied or we will
- * replace the first cluster with it with probability 1/(currentNumber
- * + 1). 
- * @author KING
- *
- */
 public final class RandomClusterGenerator {
 	private int k;
 	
@@ -43,17 +30,11 @@ public final class RandomClusterGenerator {
 			kClusters = new ArrayList<Cluster>(k);
 			this.conf = conf;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
-	/**
-	 * 
-	 * @param destinationPath the destination Path we will store
-	 * our cluster file in.the initial file will be named clusters-0
-	 */
 	public void generateInitialCluster(String destinationPath){
 		Text line = new Text();
 		FSDataInputStream fsi = null;
@@ -69,14 +50,11 @@ public final class RandomClusterGenerator {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				//in.close();
 				fsi.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -101,12 +79,6 @@ public final class RandomClusterGenerator {
 		}
 	}
 	
-	/**
-	 * ��1/(1+k)�ĸ��ʷ���һ��[0,k-1]�е�������,��
-	 * k/k+1�ĸ��ʷ���-1.
-	 * @param k
-	 * @return
-	 */
 	public int randomChoose(int k){
 		Random random = new Random();
 		if(random.nextInt(k + 1) == 0){
@@ -124,13 +96,11 @@ public final class RandomClusterGenerator {
 				fsi.write((cluster.toString() + "\n").getBytes());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				fsi.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

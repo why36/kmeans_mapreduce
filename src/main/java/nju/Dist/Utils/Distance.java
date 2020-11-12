@@ -1,4 +1,4 @@
-package king.Utils;
+package Dist.Utils;
 
 import java.util.List;
 

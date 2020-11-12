@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import king.Utils.Distance;
-import king.Utils.EuclideanDistance;
+import Dist.Utils.Distance;
+import Dist.Utils.EuclideanDistance;
 
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
@@ -18,19 +18,10 @@ import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-/**
- * �������������������д����ĵ��ļ����������ٶ������ļ�
- * �е�����ʵ�����л��ִصĹ�������������ʵ������(ʵ��,��id)
- * �ķ�ʽд������ļ�
- * @author KING
- *
- */
 public class KMeansCluster {
 	public static class KMeansClusterMapper extends Mapper<LongWritable, Text, Text, NullWritable>{
 		private ArrayList<Cluster> kClusters = new ArrayList<Cluster>();
-		/**
-		 * ����Ŀǰ�Ĵ���Ϣ
-		 */
+
 		@Override
 		protected void setup(Context context) throws IOException,InterruptedException{
 			super.setup(context);
@@ -55,9 +46,7 @@ public class KMeansCluster {
 	        fsi.close();
 		}
 		
-		/**
-		 * ��ȡһ��Ȼ��Ѱ����õ�����Ĵ�id����(instance,clusterID)
-		 */
+
 		@Override
 		public void map(LongWritable key, Text value, Context context)throws 
 		IOException, InterruptedException{
@@ -72,7 +61,6 @@ public class KMeansCluster {
 					context.write(new Text(ans), NullWritable.get());
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
